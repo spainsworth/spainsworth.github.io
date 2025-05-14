@@ -33,7 +33,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/Metro_Bus_Stops_ExportFeatures_1.js"></script>
+        <script src="data/Metro_Bus_Stops_RemovedMay2025_1.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -42,7 +42,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[38.861321695887064,-77.15496651146584],[39.01755384668924,-76.89153627702817]]);
+        }).fitBounds([[38.89379438915362,-77.10074031217235],[38.971917756699824,-76.9690251949535]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -93,7 +93,7 @@
         });
         layer_GoogleRoad_0;
         map.addLayer(layer_GoogleRoad_0);
-        function pop_Metro_Bus_Stops_ExportFeatures_1(feature, layer) {
+        function pop_Metro_Bus_Stops_RemovedMay2025_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -108,34 +108,20 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(String(feature.properties['OBJECTID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">REG_ID</th>\
+                        <td class="visible-with-data" id="REG_ID">' + (feature.properties['REG_ID'] !== null ? autolinker.link(String(feature.properties['REG_ID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['REG_ID'] !== null ? autolinker.link(String(feature.properties['REG_ID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Stop_Locat</th>\
+                        <td class="visible-with-data" id="Stop_Locat">' + (feature.properties['Stop_Locat'] !== null ? autolinker.link(String(feature.properties['Stop_Locat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Current_Ro</th>\
+                        <td class="visible-with-data" id="Current_Ro">' + (feature.properties['Current_Ro'] !== null ? autolinker.link(String(feature.properties['Current_Ro']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['EGIS_ID'] !== null ? autolinker.link(String(feature.properties['EGIS_ID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['REG_ID_1'] !== null ? autolinker.link(String(feature.properties['REG_ID_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['AT_STR'] !== null ? autolinker.link(String(feature.properties['AT_STR']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ON_STR'] !== null ? autolinker.link(String(feature.properties['ON_STR']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['StopName'] !== null ? autolinker.link(String(feature.properties['StopName']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['RemoveOrStay'] !== null ? autolinker.link(String(feature.properties['RemoveOrStay']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Removed</th>\
+                        <td class="visible-with-data" id="Removed">' + (feature.properties['Removed'] !== null ? autolinker.link(String(feature.properties['Removed']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -145,11 +131,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Metro_Bus_Stops_ExportFeatures_1_0(feature) {
-            switch(String(feature.properties['RemoveOrStay'])) {
-                case 'Removed':
+        function style_Metro_Bus_Stops_RemovedMay2025_1_0(feature) {
+            switch(String(feature.properties['Removed'])) {
+                case 'Yes':
                     return {
-                pane: 'pane_Metro_Bus_Stops_ExportFeatures_1',
+                pane: 'pane_Metro_Bus_Stops_RemovedMay2025_1',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -163,25 +149,9 @@
                 interactive: true,
             }
                     break;
-                case 'Retained':
+                case 'No':
                     return {
-                pane: 'pane_Metro_Bus_Stops_ExportFeatures_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,227,19,1.0)',
-                interactive: true,
-            }
-                    break;
-                default:
-                    return {
-                pane: 'pane_Metro_Bus_Stops_ExportFeatures_1',
+                pane: 'pane_Metro_Bus_Stops_RemovedMay2025_1',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -197,26 +167,26 @@
                     break;
             }
         }
-        map.createPane('pane_Metro_Bus_Stops_ExportFeatures_1');
-        map.getPane('pane_Metro_Bus_Stops_ExportFeatures_1').style.zIndex = 401;
-        map.getPane('pane_Metro_Bus_Stops_ExportFeatures_1').style['mix-blend-mode'] = 'normal';
-        var layer_Metro_Bus_Stops_ExportFeatures_1 = new L.geoJson(json_Metro_Bus_Stops_ExportFeatures_1, {
+        map.createPane('pane_Metro_Bus_Stops_RemovedMay2025_1');
+        map.getPane('pane_Metro_Bus_Stops_RemovedMay2025_1').style.zIndex = 401;
+        map.getPane('pane_Metro_Bus_Stops_RemovedMay2025_1').style['mix-blend-mode'] = 'normal';
+        var layer_Metro_Bus_Stops_RemovedMay2025_1 = new L.geoJson(json_Metro_Bus_Stops_RemovedMay2025_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Metro_Bus_Stops_ExportFeatures_1',
-            layerName: 'layer_Metro_Bus_Stops_ExportFeatures_1',
-            pane: 'pane_Metro_Bus_Stops_ExportFeatures_1',
-            onEachFeature: pop_Metro_Bus_Stops_ExportFeatures_1,
+            dataVar: 'json_Metro_Bus_Stops_RemovedMay2025_1',
+            layerName: 'layer_Metro_Bus_Stops_RemovedMay2025_1',
+            pane: 'pane_Metro_Bus_Stops_RemovedMay2025_1',
+            onEachFeature: pop_Metro_Bus_Stops_RemovedMay2025_1,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Metro_Bus_Stops_ExportFeatures_1_0(feature));
+                return L.circleMarker(latlng, style_Metro_Bus_Stops_RemovedMay2025_1_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Metro_Bus_Stops_ExportFeatures_1);
-        map.addLayer(layer_Metro_Bus_Stops_ExportFeatures_1);
+        bounds_group.addLayer(layer_Metro_Bus_Stops_RemovedMay2025_1);
+        map.addLayer(layer_Metro_Bus_Stops_RemovedMay2025_1);
         setBounds();
         </script>
     </body>
